@@ -8,8 +8,8 @@
 <body>
     <h1>Sign Up</h1>
 
-    <form action="/Signup/" method="post">
-    
+    <form action="{% url 'Signup' %}" method="post">
+    {% csrf_token %}
 
         <label for="">Username</label>
         <input type="text" id="username" name="username" placeholder="create a username(only letters and numbers)" required>
