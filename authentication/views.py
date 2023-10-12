@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate,login
+
 
 def Home(request):
     return render(request,'index.html')
@@ -29,7 +31,20 @@ def Signup(request):
         return render(request,"Signup.html")
 
 def Signin(request):
-    return render(request,"Signin.html")
+    if request.method=="POST":
+        username=request.POST["username"]
+        pass1=request.POST["pass1"]
+
+        user=authenticate(username=username,password=pass1)
+        
+        if user is not None:
+            login(request,user)
+            fname=user.first_name
+            return render(request,"index.html",{"fname":fname})
+        else:
+            messages.error(request,"Invalid credentials")
+
+            return redirect("Home")
 
 def Signout(request):
     pass
