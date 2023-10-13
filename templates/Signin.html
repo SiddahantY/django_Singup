@@ -7,5 +7,19 @@
 </head>
 <body>
     <h1>Sign In</h1>
+
+    <form action="{% url 'Signin' %}" method="post">
+    {% csrf_token %}
+
+        <label for="">Username</label>
+        <input type="text" id="username" name="username" placeholder="enter username" required>
+        <br>
+
+        <label for="">Password</label>
+        <input type="text" id="pass1" name="pass1" placeholder="enter your password" required>
+        <br>
+
+        <button type="submit">Sign In</button>
+    </form>
 </body>
 </html>

@@ -18,6 +18,10 @@ def Signup(request):
         email = request.POST["email"]
         pass1 = request.POST["pass2"]
         pass2 = request.POST["pass2"]
+        
+        #check if username is already taken
+        if User.objects.filter(username=username).exists():
+            return HttpResponse('Username is already taken. Please choose a different username.')
 
         my_user=User.objects.create_user(username,email,pass1)
         my_user.first_name=fname
@@ -45,6 +49,9 @@ def Signin(request):
             messages.error(request,"Invalid credentials")
 
             return redirect("Home")
+        
+    return render(request,"Signin.html")
+
 
 def Signout(request):
     pass
