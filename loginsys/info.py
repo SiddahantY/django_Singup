@@ -1,0 +1,5 @@
+EMAIL_USE_TLS = True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='djangoapps7@gmail.com'
+EMAIL_HOST_PASSWORD='Sidd_2004'
+EMAIL_PORT=587
